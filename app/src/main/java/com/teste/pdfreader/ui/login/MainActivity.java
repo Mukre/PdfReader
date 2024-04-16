@@ -1,32 +1,48 @@
 package com.teste.pdfreader.ui.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
 import com.teste.pdfreader.R;
+import com.teste.pdfreader.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    GoogleSignInOptions gOptions;
-    GoogleSignInClient gClient;
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        gOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gClient = GoogleSignIn.getClient(this, gOptions);
+        binding.bottomTriangle.setVisibility(View.VISIBLE);
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade_slide);
+        binding.bottomTriangle.startAnimation(animation);
 
-        GoogleSignInAccount gAccount = GoogleSignIn.getLastSignedInAccount(this);
-        if(gAccount != null) {
-            String gName = gAccount.getDisplayName();
+        binding.topTriangle.setVisibility(View.VISIBLE);
+        Animation animationb = AnimationUtils.loadAnimation(this, R.anim.fade_slide);
+        binding.topTriangle.startAnimation(animationb);
 
-        }
+
+        binding.bottomTriangle.startAnimation(animation);
+
+        binding.menuBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+            startActivity(intent);
+            finish();
+        });
+        binding.openPdfBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, PdfListActivity.class));
+        });
+
     }
 }

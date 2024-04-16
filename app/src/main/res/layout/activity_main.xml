@@ -2,79 +2,91 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.MainActivity"
-    android:background="@drawable/gradient">
+    android:background="@drawable/gradient"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context=".ui.login.MainActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:text="Voltar"
-        android:textColor="@color/black"
-        android:textColorLink="@color/white"
+    <ImageView
+        android:id="@+id/top_triangle"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:rotation="180"
+        android:src="@drawable/triangle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.096" />
+        android:visibility="invisible">
 
-    <TextView
-        android:id="@+id/textView"
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/bottom_triangle"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="50dp"
+        android:rotation="180"
+        android:src="@drawable/triangle"
+        app:layout_constraintBottom_toBottomOf="@id/top_triangle"
+        app:layout_constraintEnd_toEndOf="@id/top_triangle"
+        app:layout_constraintStart_toStartOf="@id/top_triangle"
+        app:layout_constraintTop_toTopOf="@id/top_triangle"
+        android:visibility="invisible">
+
+    </ImageView>
+
+    <Button
+        android:id="@+id/menu_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Menu"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </Button>
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="145dp"
-        android:layout_height="148dp"
-        android:backgroundTint="#6792E4"
-        android:text="DOWNLOADS"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="145dp"
-        android:layout_height="148dp"
-        android:backgroundTint="#6792E4"
-        android:text="COMPARTILHAR"
-        android:textColorLink="#000000"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.808"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387" />
-
-    <Button
-        android:id="@+id/button4"
-        style="@style/Widget.Material3.Button"
+        android:id="@+id/history_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#F74545"
-        android:text="SAIR / LOGOUT"
+        android:text="Histórico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </Button>
+
+    <Button
+        android:width="200dp"
+        android:id="@+id/open_pdf_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_states"
+        android:text="Abrir PDF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.816" />
+        app:layout_constraintTop_toTopOf="@+id/bottom_triangle">
+
+    </Button>
+
+    <Button
+        android:width="200dp"
+        android:id="@+id/scan_text_btn"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_states"
+        android:text="Escanear Texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/open_pdf_btn">
+
+    </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

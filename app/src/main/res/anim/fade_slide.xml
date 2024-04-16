@@ -1,0 +1,14 @@
+<!-- slide_fade_in.xml -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Animação de translação para baixo -->
+    <translate
+        android:fromYDelta="-50%"
+        android:toYDelta="0%"
+        android:duration="800" />
+
+    <!-- Animação de fade-in -->
+    <alpha
+        android:fromAlpha="0"
+        android:toAlpha="1"
+        android:duration="2000" />
+</set>
