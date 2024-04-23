@@ -48,7 +48,9 @@ public class PdfListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new AdapterClass(this, pdfFiles()));
 
-
+        binding.actionBack.setOnClickListener(v -> {
+            startActivity(new Intent(PdfListActivity.this, MainActivity.class));
+        });
     }
 
     private ArrayList<String> pdfFiles(){
