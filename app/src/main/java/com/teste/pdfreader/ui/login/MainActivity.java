@@ -44,5 +44,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, PdfListActivity.class));
         });
 
+        binding.historyBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, HistoryActivity.class));
+        });
+
     }
 }

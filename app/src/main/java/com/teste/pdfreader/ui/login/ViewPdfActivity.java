@@ -1,5 +1,6 @@
 package com.teste.pdfreader.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -33,6 +34,10 @@ public class ViewPdfActivity extends AppCompatActivity {
         } else {
             finish();
         }
+
+        binding.actionBack.setOnClickListener(v -> {
+            startActivity(new Intent(ViewPdfActivity.this, PdfListActivity.class));
+        });
     }
 
     private void loadPdf() {
