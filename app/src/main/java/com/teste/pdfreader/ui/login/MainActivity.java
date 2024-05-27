@@ -48,5 +48,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, HistoryActivity.class));
         });
 
+        binding.scanTextBtn.setOnClickListener(v -> {
+            startActivity(new Intent(this, CameraActivity.class));
+        });
+
     }
 }

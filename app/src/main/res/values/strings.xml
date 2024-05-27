@@ -10,4 +10,8 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="about_us">Incentive Seus Amigos a Usarem o SummarizeIt!
+Compartilhe o SummarizeIt com seus amigos, familiares e colegas! Imagine o quanto todos podem ganhar em produtividade e eficiência. Ao compartilhar o aplicativo, você estará ajudando outros a economizar tempo e acessar informações de maneira mais inteligente. Baixe o SummarizeIt hoje e transforme a maneira como você lê e compartilha conteúdos!
+
+Junte-se à revolução da leitura inteligente. Experimente o SummarizeIt e comece a compartilhar essa inovação agora mesmo!</string>
 </resources>
