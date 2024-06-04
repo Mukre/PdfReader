@@ -11,6 +11,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.teste.pdfreader.R;
 import com.teste.pdfreader.databinding.ActivityHistoryBinding;
+import com.teste.pdfreader.ui.MainActivity;
 
 public class HistoryActivity extends AppCompatActivity {
 

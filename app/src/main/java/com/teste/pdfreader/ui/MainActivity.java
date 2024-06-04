@@ -1,4 +1,4 @@
-package com.teste.pdfreader.ui.login;
+package com.teste.pdfreader.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,14 +6,11 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.teste.pdfreader.R;
 import com.teste.pdfreader.databinding.ActivityMainBinding;
+import com.teste.pdfreader.ui.login.HistoryActivity;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;

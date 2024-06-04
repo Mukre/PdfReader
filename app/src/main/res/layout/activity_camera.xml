@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:background="@drawable/gradient"
-    tools:context=".ui.login.CameraActivity">
+    tools:context=".ui.CameraActivity">
 
     <Button
         android:id="@+id/action_back"

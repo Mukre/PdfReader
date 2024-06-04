@@ -27,26 +27,26 @@
         android:theme="@style/Theme.PdfReader"
         tools:targetApi="31">
         <activity
-            android:name=".ui.login.ShareActivity"
+            android:name=".ui.ShareActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.CameraActivity"
+            android:name=".ui.CameraActivity"
             android:exported="false" />
         <activity
             android:name=".ui.login.HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.ViewPdfActivity"
+            android:name=".ui.ViewPdfActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.PdfListActivity"
+            android:name=".ui.PdfListActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".ui.login.MenuActivity"
+            android:name=".ui.MenuActivity"
             android:exported="false" />
         <activity
             android:name=".ui.login.LauncherActivity"

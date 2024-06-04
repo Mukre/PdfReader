@@ -7,6 +7,10 @@ android {
     namespace = "com.teste.pdfreader"
     compileSdk = 34
 
+    dataBinding {
+        enable = true
+    }
+
     defaultConfig {
         applicationId = "com.teste.pdfreader"
         minSdk = 31
@@ -36,6 +40,7 @@ android {
     buildFeatures {
         viewBinding = true
         compose = true
+        dataBinding = true
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -51,6 +56,11 @@ android {
 }
 
 dependencies {
+    compileOnly("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
+    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation ("androidx.databinding:databinding-runtime:4.0.1")
+    implementation ("com.google.dagger:hilt-android:2.44")
     implementation("com.google.android.gms:play-services-vision:20.1.3")
     implementation("com.theartofdev.edmodo:android-image-cropper:2.8.0")
     implementation ("com.google.mlkit:text-recognition:16.0.0")

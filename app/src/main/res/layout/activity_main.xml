@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:padding="16dp"
-    tools:context=".ui.login.MainActivity">
+    tools:context=".ui.MainActivity">
 
     <ImageView
         android:id="@+id/top_triangle"

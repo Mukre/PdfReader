@@ -1,4 +1,4 @@
-package com.teste.pdfreader.ui.login;
+package com.teste.pdfreader.ui;
 
 import android.Manifest;
 import android.annotation.SuppressLint;

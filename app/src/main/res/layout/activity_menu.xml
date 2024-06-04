@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="16dp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.login.MenuActivity"
-    android:background="@drawable/gradient">
+    tools:context=".ui.MenuActivity">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.teste.pdfreader.ui.viewmodel.MenuViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient"
+        android:padding="16dp">
 
     <Button
         android:id="@+id/action_back"
@@ -79,46 +89,44 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:visibility="gone"
-        android:id="@+id/email_baloon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/avatar_imgview">
-
-        <ImageView
-            android:id="@+id/white_triangle"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/white_tiangle"
-            app:layout_constraintBottom_toTopOf="@+id/email_cardview"
-            app:layout_constraintStart_toStartOf="@+id/email_cardview">
-
-        </ImageView>
-
-        <androidx.cardview.widget.CardView
-
-            android:id="@+id/email_cardview"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/email_baloon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            app:cardCornerRadius="8dp"
+            android:layout_margin="10dp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/avatar_imgview">
 
-            <TextView
-                android:id="@+id/email_textview"
+            <ImageView
+                android:id="@+id/white_triangle"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/white_tiangle"
+                app:layout_constraintBottom_toTopOf="@+id/email_cardview"
+                app:layout_constraintStart_toStartOf="@+id/email_cardview">
+
+            </ImageView>
+
+            <androidx.cardview.widget.CardView
+
+                android:id="@+id/email_cardview"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_margin="4dp"
-                android:text="e-mail" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/email_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_margin="4dp" />
 
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

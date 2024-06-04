@@ -1,15 +1,10 @@
-package com.teste.pdfreader.ui.login;
+package com.teste.pdfreader.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.teste.pdfreader.R;
 import com.teste.pdfreader.databinding.ActivityShareBinding;
 
 public class ShareActivity extends AppCompatActivity {
