@@ -13,10 +13,10 @@
         android:id="@+id/action_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
+        android:src="@drawable/button_states"
         android:text="Voltar"
         android:textSize="12sp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textColorLink="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -79,36 +79,46 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:visibility="gone"
-        android:id="@+id/white_triangle"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:src="@drawable/white_tiangle"
-        app:layout_constraintBottom_toTopOf="@+id/email_cardview"
-        app:layout_constraintEnd_toEndOf="@+id/avatar_imgview"
-        app:layout_constraintStart_toStartOf="@+id/avatar_imgview">
-
-    </ImageView>
-
-    <androidx.cardview.widget.CardView
-        android:visibility="gone"
-        android:id="@+id/email_cardview"
+        android:id="@+id/email_baloon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp"
-        android:layout_marginTop="15dp"
+        android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatar_imgview">
+        app:layout_constraintTop_toBottomOf="@id/avatar_imgview">
 
-        <TextView
-            android:id="@+id/email_textview"
+        <ImageView
+            android:id="@+id/white_triangle"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/white_tiangle"
+            app:layout_constraintBottom_toTopOf="@+id/email_cardview"
+            app:layout_constraintStart_toStartOf="@+id/email_cardview">
+
+        </ImageView>
+
+        <androidx.cardview.widget.CardView
+
+            android:id="@+id/email_cardview"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_margin="4dp"
-            android:text="e-mail" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/email_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_margin="4dp"
+                android:text="e-mail" />
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

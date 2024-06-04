@@ -95,20 +95,19 @@ public class MenuActivity extends AppCompatActivity {
             if (visible){
                 Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.pop_down);
 
-                binding.emailCardview.startAnimation(animation);
-                binding.emailCardview.setVisibility(View.GONE);
-                binding.whiteTriangle.setVisibility(View.GONE);
+                binding.emailBaloon.startAnimation(animation);
+                binding.emailBaloon.setVisibility(View.GONE);
+                binding.emailBaloon.setVisibility(View.GONE);
                 visible = !visible;
             }
         });
 
         binding.avatarImgview.setOnClickListener(v -> {
-            binding.emailCardview.setVisibility(visible ? View.GONE : View.VISIBLE);
-            binding.whiteTriangle.setVisibility(visible ? View.GONE : View.VISIBLE);
+            binding.emailBaloon.setVisibility(visible ? View.GONE : View.VISIBLE);
 
             int src = visible ? R.anim.pop_down : R.anim.pop_up;
             Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), src);
-            binding.emailCardview.startAnimation(animation);
+            binding.emailBaloon.startAnimation(animation);
             visible = !visible;
         });
     }

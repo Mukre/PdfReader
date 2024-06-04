@@ -53,6 +53,7 @@ android {
 dependencies {
     implementation("com.google.android.gms:play-services-vision:20.1.3")
     implementation("com.theartofdev.edmodo:android-image-cropper:2.8.0")
+    implementation ("com.google.mlkit:text-recognition:16.0.0")
 
     implementation("androidx.credentials:credentials:1.3.0-alpha02")
     implementation("androidx.credentials:credentials-play-services-auth:1.3.0-alpha02")

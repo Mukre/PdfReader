@@ -1,40 +1,39 @@
 package com.teste.pdfreader.ui.login;
 
+import static com.theartofdev.edmodo.cropper.CropImage.getCaptureImageOutputUri;
+
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.SparseArray;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
-import com.teste.pdfreader.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.Text;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 import com.teste.pdfreader.databinding.ActivityCameraBinding;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -58,8 +57,6 @@ public class CameraActivity extends AppCompatActivity {
         binding = ActivityCameraBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mResultEt = findViewById(R.id.resultEt);
-        mPreviewIv = findViewById(R.id.imageIv);
 
         //camera permission
         cameraPermission = new String[]{android.Manifest.permission.CAMERA,
@@ -81,7 +78,7 @@ public class CameraActivity extends AppCompatActivity {
         String[] items = {" Camera", " Gallery"};
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         //set title
-        dialog.setTitle("Select Image");
+        dialog.setTitle("Selecione uma fonte,");
         dialog.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
@@ -196,55 +193,58 @@ public class CameraActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            if (requestCode == IMAGE_PICK_GALLERY_CODE) {
-                //got image from gallery now crop it
-                CropImage.activity(data.getData())
-                        .setGuidelines(CropImageView.Guidelines.ON) //enable image guidlines
-                        .start(this);
-            }
-            if (requestCode == IMAGE_PICK_CAMERA_CODE) {
-                //got image from camera now crop it
-                CropImage.activity(image_uri)
-                        .setGuidelines(CropImageView.Guidelines.ON) //enable image guidlines
-                        .start(this);
-            }
-        }
+            if (requestCode == IMAGE_PICK_GALLERY_CODE && data != null) {
+                Uri imageUri = data.getData();
 
-        //get cropped image
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-
-            if (resultCode == RESULT_OK) {
-                Uri resultUri = result.getUri(); //get image uri
-                //set image to imageview
-                mPreviewIv.setImageURI(resultUri);
-
-                //get drawable bitmap for text recognition
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) mPreviewIv.getDrawable();
-                Bitmap bitmap = bitmapDrawable.getBitmap();
-
-                TextRecognizer recognizer = new TextRecognizer.Builder(getApplicationContext()).build();
-
-                if (!recognizer.isOperational()) {
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-                } else {
-                    Frame frame = new Frame.Builder().setBitmap(bitmap).build();
-                    SparseArray<TextBlock> items = recognizer.detect(frame);
-                    StringBuilder sb = new StringBuilder();
-                    //get text from sb until there is no text
-                    for (int i = 0; i < items.size(); i++) {
-                        TextBlock myItem = items.valueAt(i);
-                        sb.append(myItem.getValue());
-                        sb.append("\n");
-                    }
-                    //set text to edit text
-                    mResultEt.setText(sb.toString());
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                    recognizeTextFromImage(bitmap);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                //if there is any error show it
-                Exception error = result.getError();
-                Toast.makeText(this, "Error " + error, Toast.LENGTH_SHORT).show();
+            }
+            if (requestCode == IMAGE_PICK_CAMERA_CODE && data != null) {
+                Uri imageUri = getCaptureImageOutputUri(this);
+
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                    recognizeTextFromImage(bitmap);
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
+
+    private void recognizeTextFromImage(Bitmap bitmap) {
+        InputImage image = InputImage.fromBitmap(bitmap, 0);
+
+        com.google.mlkit.vision.text.TextRecognizer recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+        recognizer.process(image)
+                .addOnSuccessListener(new OnSuccessListener<com.google.mlkit.vision.text.Text>() {
+                    @Override
+                    public void onSuccess(Text visionText) {
+                        binding.previewCardView.setVisibility(View.VISIBLE);
+                        processTextRecognitionResult(visionText);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        binding.previewCardView.setVisibility(View.GONE);
+                        e.printStackTrace();
+                    }
+                });
+    }
+
+    private void processTextRecognitionResult(Text texts) {
+        String resultText = texts.getText();
+        Log.d("RecognizedText", resultText);
+        binding.previewTextView.setText(resultText.toLowerCase());
+    }
+
 }
